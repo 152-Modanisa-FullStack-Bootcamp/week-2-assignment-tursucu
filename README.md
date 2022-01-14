@@ -1,3 +1,3 @@
-# Vuex 
+# Vuex included in the project.
 
-Assignment not completed yet, branch has been duplicated.
+<img  align="middle" width="1080px" alt="GIF" src="pictures/Desktop_Shot_vuex.gif" />

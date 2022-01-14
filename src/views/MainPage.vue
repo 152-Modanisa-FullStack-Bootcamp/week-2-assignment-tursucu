@@ -9,32 +9,33 @@
 </template>
 
 <script>
-import axios from "axios";
 import VideoItem from '@/components/VideoItem';
+import {mapState, mapActions} from "vuex";
 
 export default {
   name: "MainPage",
   components: {
     VideoItem
   },
-  data() {
-    return {
-      videos: []
-    }
+  computed: {
+    // videos are pulled from $store
+    ...mapState(["videos"]),
+
   },
-  created () {
+  methods: {
+    //getVideos, data is added to $store from url
+    ...mapActions(["getVideos"])
+  },
+  created() {
     document.title = "Home | Modanisa Bootcamp";
-  },
-  async mounted() {
-    const {data} = await axios.get("https://my-json-server.typicode.com/modanisa/bootcamp-video-db/videos")
-    this.videos = data;
+    this.getVideos();
   }
 };
 </script>
 
 <style scoped>
 
-.container{
+.container {
   display: flex;
   flex-direction: row;
   gap: 20px 20px;

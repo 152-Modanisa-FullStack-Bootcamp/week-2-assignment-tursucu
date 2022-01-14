@@ -9,25 +9,19 @@
 </template>
 
 <script>
-import axios from "axios";
 import VideoItemBig from '@/components/VideoItemBig';
-
+import {mapState} from "vuex"
 export default {
   name: "FavoritePage",
   components: {
     VideoItemBig
   },
-  data() {
-    return {
-      videos: []
-    }
-  },
-  created () {
+  created() {
     document.title = "Favorites | Modanisa Bootcamp";
   },
-  async mounted() {
-    const {data} = await axios.get("https://my-json-server.typicode.com/modanisa/bootcamp-video-db/videos")
-    this.videos = data.filter(d=> d.favorite);
+  computed: {
+    // favorite data from the $store is called
+    ...mapState({videos:"favorites"})
   }
 };
 </script>
@@ -39,7 +33,6 @@ export default {
   flex-direction: column;
   gap: 20px 0;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   margin: 20px 0;
   width: 960px;
