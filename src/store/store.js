@@ -34,11 +34,8 @@ const store = new Vuex.Store({
         },
         // addOrRemoveFavoriteAction function, both remove and add operations are performed.
         addOrRemoveFavoriteAction({commit, state}, payload) {
-            if (!state.favorites.some(e => e.id === payload.id)) {
-                commit('SET_FAVORITES', payload)
-            } else if (state.favorites.some(e => e.id === payload.id)) {
-                commit('DELETE_FAVORITES', payload)
-            }
+            const favorite = state.favorites.some(e => e.id === payload.id)
+            !favorite ? commit('SET_FAVORITES', payload) : commit('DELETE_FAVORITES', payload)
         }
     }
 })
